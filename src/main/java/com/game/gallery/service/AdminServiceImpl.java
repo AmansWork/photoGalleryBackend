@@ -21,14 +21,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ResponseEntity<HttpStatus> checkAdmin(Admin admin) {
 		
-		
 		String s = admin.getUserName();
 		Admin admin1 = adminDao.findById(s).orElse(null);
 		Hibernate.initialize(admin);
 		if((admin.getUserName().equals(admin1.getUserName())) && admin.getPassword().equals(admin1.getPassword())) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
